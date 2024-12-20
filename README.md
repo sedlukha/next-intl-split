@@ -126,7 +126,7 @@ In the `getRequestConfig` function, wrap the `messages` object with `loadI18nTra
 ```ts
 import { notFound } from 'next/navigation';
 import { getRequestConfig } from 'next-intl/server';
-import { loadI18nTranslations } from 'next-intl-split/loader';
+import { loadI18nTranslations } from 'next-intl-split/load';
 
 // Can be imported from a shared config
 const locales = ['en', 'es', 'fa'];
@@ -148,7 +148,7 @@ export default getRequestConfig(async ({ locale }) => {
 
 ```ts
 import { getRequestConfig } from 'next-intl/server';
-import { loadI18nTranslations } from 'next-intl-split/loader';
+import { loadI18nTranslations } from 'next-intl-split/load';
 
 export default getRequestConfig(async () => {
   const locale = 'en';
@@ -172,7 +172,7 @@ In the `getRequestConfig` function:
 ```ts
 import { notFound } from 'next/navigation';
 import { getRequestConfig } from 'next-intl/server';
-import { loadI18nTranslations } from 'next-intl-split/loader';
+import { loadI18nTranslations } from 'next-intl-split/load';
 
 // Can be imported from a shared config
 const locales = ['en', 'es', 'fa'];
@@ -199,7 +199,7 @@ export default getRequestConfig(async ({ locale }) => {
 
 ```ts
 import { getRequestConfig } from 'next-intl/server';
-import { loadI18nTranslations } from 'next-intl-split/loader';
+import { loadI18nTranslations } from 'next-intl-split/load';
 
 export default getRequestConfig(async () => {
   const locale = 'en';
