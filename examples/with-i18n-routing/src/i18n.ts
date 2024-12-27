@@ -10,7 +10,7 @@ export default getRequestConfig(async ({ locale }) => {
   let messages = (await import(`./messages/${locale}.json`)).default;
 
   if (process.env.NODE_ENV === 'development') {
-    messages = loadI18nTranslations('./src/core/i18n/messages', locale);
+    messages = loadI18nTranslations('./src/messages', locale);
   }
 
   return {
