@@ -2,7 +2,7 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 import { mergeMessages } from '../merge';
 
-module.exports = function createNextIntlSplitPlugin(
+export default function createNextIntlSplitPlugin(
   dictionariesPath: string,
   i18nPath?: string
 ) {
@@ -11,4 +11,4 @@ module.exports = function createNextIntlSplitPlugin(
   }
 
   return createNextIntlPlugin(i18nPath);
-};
+}
