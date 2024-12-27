@@ -1,6 +1,6 @@
 {
   "name": "next-intl-split",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "A loader for next-intl to split translation files properly.",
   "author": {
     "name": "Hosein Pouyanmehr",
@@ -8,7 +8,10 @@
   },
   "type": "module",
   "files": [
-    "dist/**/*"
+    "load/**/*",
+    "merge/**/*",
+    "plugin/**/*",
+    "write/**/*"
   ],
   "license": "MIT",
   "homepage": "https://github.com/HPouyanmehr/next-intl-split/blob/main/README.md",
@@ -22,27 +25,27 @@
   "scripts": {
     "build-lib": "rollup -c"
   },
-  "main": "dist/load/index.cjs",
+  "main": "load/index.cjs",
   "exports": {
     ".": {
-      "import": "./dist/load/index.mjs",
-      "require": "./dist/load/index.cjs"
+      "import": "./load/index.mjs",
+      "require": "./load/index.cjs"
     },
     "./plugin": {
-      "import": "./dist/plugin/index.mjs",
-      "require": "./dist/plugin/index.cjs"
+      "import": "./plugin/index.mjs",
+      "require": "./plugin/index.cjs"
     },
     "./write": {
-      "import": "./dist/write/index.mjs",
-      "require": "./dist/write/index.cjs"
+      "import": "./write/index.mjs",
+      "require": "./write/index.cjs"
     },
     "./merge": {
-      "import": "./dist/merge/index.mjs",
-      "require": "./dist/merge/index.cjs"
+      "import": "./merge/index.mjs",
+      "require": "./merge/index.cjs"
     },
     "./load": {
-      "import": "./dist/load/index.mjs",
-      "require": "./dist/load/index.cjs"
+      "import": "./load/index.mjs",
+      "require": "./load/index.cjs"
     }
   },
   "devDependencies": {
