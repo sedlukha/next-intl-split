@@ -99,10 +99,11 @@ Example view of translation files:
 
 ##### Next Config (Only for serverless deployment environments)
 
-Use `next-intl-split` plugin instead of the `next-intl` one. Make sure the config file format is `js` and not `mjs`.
+Use `next-intl-split` plugin instead of the `next-intl` one.
 
 ```js
 const createNextIntlSplitPlugin = require('next-intl-split/plugin');
+// import createNextIntlSplitPlugin from 'next-intl-split/plugin'; // For .mjs
 
 const withNextIntlSplitPlugin = createNextIntlSplitPlugin(
   './src/core/i18n/dictionaries', // REQUIRED relative path to dictionaries folder starting from src folder.
@@ -113,6 +114,7 @@ const withNextIntlSplitPlugin = createNextIntlSplitPlugin(
 const nextConfig = {};
 
 module.exports = withNextIntlSplitPlugin(nextConfig);
+// export default withNextIntlSplit(nextConfig); // For .mjs
 ```
 
 This plugin will merge the messages into a single file at the build time.
