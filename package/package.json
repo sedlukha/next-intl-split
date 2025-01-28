@@ -1,6 +1,6 @@
 {
   "name": "next-intl-split",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "A loader for next-intl to split translation files properly.",
   "author": {
     "name": "Hosein Pouyanmehr",
@@ -26,34 +26,41 @@
     "build-lib": "rollup -c"
   },
   "main": "load/index.cjs",
+  "module": "load/index.mjs",
+  "types": "load/index.d.ts",
   "exports": {
     ".": {
       "import": "./load/index.mjs",
-      "require": "./load/index.cjs"
+      "require": "./load/index.cjs",
+      "types": "./load/index.d.ts"
     },
     "./plugin": {
       "import": "./plugin/index.mjs",
-      "require": "./plugin/index.cjs"
+      "require": "./plugin/index.cjs",
+      "types": "./plugin/index.d.ts"
     },
     "./write": {
       "import": "./write/index.mjs",
-      "require": "./write/index.cjs"
+      "require": "./write/index.cjs",
+      "types": "./write/index.d.ts"
     },
     "./merge": {
       "import": "./merge/index.mjs",
-      "require": "./merge/index.cjs"
+      "require": "./merge/index.cjs",
+      "types": "./merge/index.d.ts"
     },
     "./load": {
       "import": "./load/index.mjs",
-      "require": "./load/index.cjs"
+      "require": "./load/index.cjs",
+      "types": "./load/index.d.ts"
     }
   },
   "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.1.2",
     "@types/node": "^22.5.0",
     "next-intl": "^3.19.1",
     "rollup": "^2.79.2",
-    "rollup-plugin-terser": "^7.0.2",
     "typescript": "^5.5.4"
   }
 }
