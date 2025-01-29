@@ -23,7 +23,7 @@ export default async function Home() {
               locale === currentLocale ? 'text-white' : ''
             } ${locale === currentLocale ? 'bg-rose-300' : ''}`}
           >
-            {translate(`buttons.${locale}`)}
+            {translate(`buttons.${locale}` as 'buttons.en')}
           </Link>
         ))}
       </div>
