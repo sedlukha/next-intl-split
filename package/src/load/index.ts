@@ -1,7 +1,10 @@
-import { readdirSync, readFileSync } from 'fs';
+import { existsSync, readdirSync, readFileSync } from 'fs';
 import path from 'path';
+import { writeMessages } from '../write';
 
 const FILE_NAME = 'index.json';
+
+const doesPathExist = (pathToCheck: string) => existsSync(pathToCheck);
 
 const isAJSONFilePath = (filePath: string): boolean =>
   filePath.includes(FILE_NAME) && filePath.includes(path.sep);
@@ -21,13 +24,24 @@ const createNestedObject = (obj: { [key: string]: any }, keys: string[]) => {
 
 export const loadI18nTranslations = (
   dictionariesPath: string,
-  locale: string
+  locale: string,
+  enableTypeCheck?: boolean
 ) => {
   const allMessages = loadMessages(dictionariesPath);
 
   const localeMessages = Object.entries(allMessages).filter(
     (localeMessage) => localeMessage[0] === locale
   )[0][1];
+
+  if (enableTypeCheck) {
+    const absolutePath = path.resolve(process.cwd(), dictionariesPath);
+
+    const pathExist = doesPathExist(absolutePath);
+
+    if (pathExist) {
+      writeMessages(absolutePath, allMessages);
+    }
+  }
 
   return localeMessages;
 };

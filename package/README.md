@@ -7,6 +7,7 @@ A loader for [next-intl](https://next-intl-docs.vercel.app/) to split translatio
 - <a href="#installation">Installation</a>
 - <a href="#pros">What about `next-intl` built-in split approach?</a>
 - <a href="#how_to_use">How to use the package?</a>
+- <a href="#how_to_add_types">How to add types?</a>
 
 ## <a id="installation"></a> Installation
 
@@ -32,6 +33,8 @@ On the other hand `next-intl-split` is a tiny package (just a few utilities to h
 - Split translations freely, without worrying about hardcoding the file names in the `getRequestConfig` utility.
 - Smaller `JSON` files.
 - Cleaner `JSON` files.
+- Support for TypeScript.
+- Support for Next.Js Config file with `.ts/.js/.mjs` extensions.
 
 ## <a id="how_to_use"></a> How to use the package?
 
@@ -240,4 +243,32 @@ export async function getStaticProps(context) {
     },
   };
 }
+```
+
+## <a id="how_to_add_types"></a>Add Support for TypeScript
+
+Starting from `v1.2.4` you'll be able to enable type check.
+
+1. Add global type declaration as mentioned in `next-intl` documentation. [Check this](https://next-intl.dev/docs/workflows/typescript)
+
+2. Based on your default locale, ensure that there is a `.json` file for that in your messages (or translations) folder.
+   As an example if your default locale is `en` and you have your messages in `./src/messages/`, make sure there is an `en.json` module in it, even an empty one or you can build your project once to have them merged automatically.
+
+3. Inside the `getRequestConfig`, add the `true` parameters to the `loadI18nTranslations` utitlity as the 3rd param.
+
+```ts
+// ./src/i18n/request.ts
+...
+export default getRequestConfig(async ({ locale }) => {
+  ...
+
+  messages = loadI18nTranslations(
+    './src/messages',
+    locale,
+    true // This will enable type check
+  );
+
+  ...
+});
+...
 ```

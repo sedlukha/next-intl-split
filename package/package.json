@@ -1,6 +1,6 @@
 {
   "name": "next-intl-split",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "A loader for next-intl to split translation files properly.",
   "author": {
     "name": "Hosein Pouyanmehr",
@@ -20,7 +20,12 @@
   "keywords": [
     "next-intl",
     "next-intl-split",
-    "split"
+    "split",
+    "intl",
+    "internationalization",
+    "i18n",
+    "next.js",
+    "next"
   ],
   "scripts": {
     "build-lib": "rollup -c"
