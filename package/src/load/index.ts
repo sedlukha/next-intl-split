@@ -1,5 +1,7 @@
 import { existsSync, readdirSync, readFileSync } from 'fs';
+import { AbstractIntlMessages } from 'next-intl';
 import path from 'path';
+
 import { writeMessages } from '../write';
 
 const FILE_NAME = 'index.json';
@@ -43,7 +45,7 @@ export const loadI18nTranslations = (
     }
   }
 
-  return localeMessages;
+  return localeMessages as AbstractIntlMessages;
 };
 
 export const loadMessages = (dictionariesPath: string) => {
