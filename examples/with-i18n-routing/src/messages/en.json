@@ -2,6 +2,7 @@
   "home": {
     "hero": {
       "title": "Hello!",
+      "phrase": "The current locale is: {locale}",
       "buttons": {
         "en": "EN",
         "es": "ES",

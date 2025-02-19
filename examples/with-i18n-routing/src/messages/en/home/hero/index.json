@@ -1,3 +1,4 @@
 {
-  "title": "Hello!"
+  "title": "Hello!",
+  "phrase": "The current locale is: {locale}"
 }
