@@ -4,27 +4,22 @@ import path from 'path';
 const extractLocalesAndMessages = (messages: { [key: string]: any }) =>
   Object.entries(messages);
 
-export const writeMessages = (dictionariesPath: string, messages: {}) => {
+export const writeMessages = (outputPath: string, messages: {}) => {
   const localeMessagesMap = extractLocalesAndMessages(messages);
 
-  const isInProduction = process.env.NODE_ENV === 'production';
+  console.log('\n');
+  console.log('  ▲ Next Intl Split');
 
-  if (isInProduction) {
-    console.log('\n');
-    console.log('  ▲ Next Intl Split');
-  }
   for (let index = 0; index < localeMessagesMap.length; index++) {
     const locale = localeMessagesMap[index][0];
     const localeMessages = localeMessagesMap[index][1];
 
     try {
-      const pathToWrite = path.resolve(dictionariesPath, `${locale}.json`);
+      const pathToWrite = path.resolve(outputPath, `${locale}.json`);
       const content = JSON.stringify(localeMessages, null, 2);
 
       writeFileSync(pathToWrite, content);
-      if (isInProduction) {
-        console.log(`\tSuccessfully merged JSON content for ${locale}`);
-      }
+      console.log(`\tSuccessfully merged JSON content for ${locale}`);
     } catch (error) {
       console.error(
         'The following error occured in writer in next-intl-split.',
@@ -33,5 +28,5 @@ export const writeMessages = (dictionariesPath: string, messages: {}) => {
     }
   }
 
-  if (isInProduction) console.log('\n');
+  console.log('\n');
 };

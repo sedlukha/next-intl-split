@@ -3,12 +3,11 @@ import createNextIntlPlugin from 'next-intl/plugin';
 import { mergeMessages } from '../merge';
 
 export default function createNextIntlSplitPlugin(
-  dictionariesPath: string,
-  i18nPath?: string
+  outputPath: string,
+  i18nPath?: string,
+  inputPath?: string
 ) {
-  if (process.env.NODE_ENV === 'production') {
-    mergeMessages(dictionariesPath);
-  }
+  mergeMessages(outputPath, inputPath);
 
   return createNextIntlPlugin(i18nPath);
 }

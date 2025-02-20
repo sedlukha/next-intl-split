@@ -7,26 +7,35 @@ import { writeMessages } from '../write';
 const isRelativePath = (pathToCheck: string) => pathToCheck.startsWith(`./`);
 const doesPathExist = (pathToCheck: string) => existsSync(pathToCheck);
 
-export const mergeMessages = (pathToDictionaries: string) => {
-  const pathIsRelative = isRelativePath(pathToDictionaries);
-
-  if (!pathIsRelative) {
+export const mergeMessages = (outputPath: string, inputPath?: string) => {
+  if (!isRelativePath(outputPath)) {
     throw new Error(
-      `Please provide the RELATIVE path to the dictionaries folder. Like, ./src/i18n/dictionaries`
+      `Please provide the RELATIVE path to the output messages folder. Like, ./src/i18n/messages`
     );
   }
 
-  const absolutePath = path.resolve(process.cwd(), pathToDictionaries);
-
-  const pathExist = doesPathExist(absolutePath);
-
-  if (!pathExist) {
+  if (inputPath && !isRelativePath(inputPath)) {
     throw new Error(
-      `The provided path to the dictionaries does not exist! ${absolutePath}`
+      `Please provide the RELATIVE path to the input messages folder. Like, ./src/components`
     );
   }
 
-  const messages = loadMessages(absolutePath);
+  const outputAbsolutePath = path.resolve(process.cwd(), outputPath);
+  const inputAbsolutePath = path.resolve(process.cwd(), inputPath || outputPath);
 
-  writeMessages(absolutePath, messages);
+  if (!doesPathExist(outputAbsolutePath)) {
+    throw new Error(
+      `The provided path to the output messages does not exist! ${outputAbsolutePath}`
+    );
+  }
+
+  if (inputPath && !doesPathExist(inputPath)) {
+    throw new Error(
+      `The provided path to the input messages does not exist! ${inputAbsolutePath}`
+    );
+  }
+
+  const messages = loadMessages(inputAbsolutePath);
+
+  writeMessages(outputAbsolutePath, messages);
 };

@@ -25,18 +25,18 @@ const createNestedObject = (obj: { [key: string]: any }, keys: string[]) => {
 };
 
 export const loadI18nTranslations = (
-  dictionariesPath: string,
+  outputPath: string,
   locale: string,
   enableTypeCheck?: boolean
 ) => {
-  const allMessages = loadMessages(dictionariesPath);
+  const allMessages = loadMessages(outputPath);
 
   const localeMessages = Object.entries(allMessages).filter(
     (localeMessage) => localeMessage[0] === locale
   )[0][1];
 
   if (enableTypeCheck) {
-    const absolutePath = path.resolve(process.cwd(), dictionariesPath);
+    const absolutePath = path.resolve(process.cwd(), outputPath);
 
     const pathExist = doesPathExist(absolutePath);
 
@@ -48,11 +48,11 @@ export const loadI18nTranslations = (
   return localeMessages as AbstractIntlMessages;
 };
 
-export const loadMessages = (dictionariesPath: string) => {
+export const loadMessages = (inputPath: string) => {
   let messages: { [key: string]: any } = {};
 
   try {
-    const files = readdirSync(dictionariesPath, { recursive: true });
+    const files = readdirSync(inputPath, { recursive: true });
 
     for (let filePathIndex = 0; filePathIndex < files.length; filePathIndex++) {
       const file = files[filePathIndex];
@@ -62,7 +62,7 @@ export const loadMessages = (dictionariesPath: string) => {
           .split(path.sep)
           .filter((parent) => parent !== FILE_NAME);
 
-        const pathToFile = path.resolve(process.cwd(), dictionariesPath, file);
+        const pathToFile = path.resolve(process.cwd(), inputPath, file);
         const fileMessages = JSON.parse(readFileSync(pathToFile, 'utf-8'));
 
         messages = {
