@@ -1,16 +1,18 @@
-'use client';
+import { getLocale, getTranslations } from 'next-intl/server';
 
 import { locales } from '@/i18n/locales';
 import { Link } from '@/i18n/navigation';
-import { useLocale, useTranslations } from 'next-intl';
 
 // Components
 import ClientSideComponent from '@/components/csr';
 
-const ClientSidePage = () => {
+const ClientSidePage = async () => {
   // Hooks
-  const currentLocale = useLocale();
-  const translate = useTranslations('home.hero');
+  const currentLocale = await getLocale();
+  const translate = await getTranslations({
+    locale: currentLocale,
+    namespace: 'home.hero',
+  });
 
   return (
     <main className='flex flex-col gap-4 items-center justify-center h-screen w-full'>
